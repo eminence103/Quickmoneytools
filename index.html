@@ -3,120 +3,365 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quick Money Tools</title>
+
+  <title>Quick Money Tools - Free Money Calculators</title>
+
+  <meta name="description" content="Free online money calculators for percentages, discounts, profit, markup, VAT, loans and savings.">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
-      max-width: 700px;
-      margin: 0 auto;
-      padding: 30px 20px;
-      background: #f5f5f5;
+      background: #f4f6f8;
       color: #222;
     }
 
-    h1 {
+    header {
+      background: #111;
+      color: white;
       text-align: center;
+      padding: 30px 20px;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 0;
+      color: #ccc;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 15px;
     }
 
     .tool {
       background: white;
-      padding: 20px;
-      margin: 20px 0;
+      margin-bottom: 20px;
+      padding: 22px;
       border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .tool h2 {
+      margin-top: 0;
+      font-size: 21px;
     }
 
     input {
       width: 100%;
-      padding: 12px;
-      margin: 8px 0;
-      box-sizing: border-box;
+      padding: 13px;
+      margin: 7px 0;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 7px;
+      font-size: 16px;
     }
 
     button {
       width: 100%;
-      padding: 12px;
+      padding: 13px;
       margin-top: 8px;
-      border: none;
-      border-radius: 6px;
-      background: #222;
+      background: #111;
       color: white;
+      border: none;
+      border-radius: 7px;
       font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
     }
 
     .result {
       margin-top: 15px;
+      padding: 12px;
+      background: #f1f1f1;
+      border-radius: 7px;
       font-weight: bold;
-      font-size: 18px;
+      line-height: 1.5;
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
+      padding: 30px 15px;
       color: #777;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
+<header>
   <h1>Quick Money Tools</h1>
+  <p>Free calculators for everyday money decisions.</p>
+</header>
 
-  <p style="text-align: center;">
-    Simple free calculators for everyday money calculations.
-  </p>
+<main>
 
+  <!-- Percentage Calculator -->
   <div class="tool">
     <h2>Percentage Calculator</h2>
 
     <input type="number" id="percent" placeholder="Percentage (%)">
-    <input type="number" id="number" placeholder="Amount">
+    <input type="number" id="percentAmount" placeholder="Amount">
 
-    <button onclick="calculatePercentage()">Calculate</button>
+    <button onclick="percentageCalculator()">Calculate</button>
 
     <div class="result" id="percentageResult"></div>
   </div>
 
+
+  <!-- Discount Calculator -->
   <div class="tool">
     <h2>Discount Calculator</h2>
 
-    <input type="number" id="price" placeholder="Original price">
-    <input type="number" id="discount" placeholder="Discount (%)">
+    <input type="number" id="originalPrice" placeholder="Original price">
+    <input type="number" id="discountPercent" placeholder="Discount (%)">
 
-    <button onclick="calculateDiscount()">Calculate</button>
+    <button onclick="discountCalculator()">Calculate</button>
 
     <div class="result" id="discountResult"></div>
   </div>
 
-  <footer>
-    © 2026 Quick Money Tools
-  </footer>
 
-  <script>
-    function calculatePercentage() {
-      const percent = Number(document.getElementById("percent").value);
-      const number = Number(document.getElementById("number").value);
+  <!-- Profit Calculator -->
+  <div class="tool">
+    <h2>Profit Calculator</h2>
 
-      const result = (percent / 100) * number;
+    <input type="number" id="buyingPrice" placeholder="Buying price (₦)">
+    <input type="number" id="sellingPrice" placeholder="Selling price (₦)">
 
-      document.getElementById("percentageResult").textContent =
-        "Result: " + result;
-    }
+    <button onclick="profitCalculator()">Calculate Profit</button>
 
-    function calculateDiscount() {
-      const price = Number(document.getElementById("price").value);
-      const discount = Number(document.getElementById("discount").value);
+    <div class="result" id="profitResult"></div>
+  </div>
 
-      const saved = (discount / 100) * price;
-      const finalPrice = price - saved;
 
-      document.getElementById("discountResult").textContent =
-        "You save: " + saved + " | Final price: " + finalPrice;
-    }
-  </script>
+  <!-- Markup Calculator -->
+  <div class="tool">
+    <h2>Markup Calculator</h2>
+
+    <input type="number" id="costPrice" placeholder="Cost price (₦)">
+    <input type="number" id="markupPercent" placeholder="Markup (%)">
+
+    <button onclick="markupCalculator()">Calculate Selling Price</button>
+
+    <div class="result" id="markupResult"></div>
+  </div>
+
+
+  <!-- VAT Calculator -->
+  <div class="tool">
+    <h2>VAT Calculator</h2>
+
+    <input type="number" id="vatAmount" placeholder="Amount (₦)">
+    <input type="number" id="vatRate" value="7.5" placeholder="VAT rate (%)">
+
+    <button onclick="vatCalculator()">Calculate VAT</button>
+
+    <div class="result" id="vatResult"></div>
+  </div>
+
+
+  <!-- Loan Calculator -->
+  <div class="tool">
+    <h2>Loan Calculator</h2>
+
+    <input type="number" id="loanAmount" placeholder="Loan amount (₦)">
+    <input type="number" id="loanRate" placeholder="Annual interest rate (%)">
+    <input type="number" id="loanMonths" placeholder="Loan period (months)">
+
+    <button onclick="loanCalculator()">Calculate Monthly Payment</button>
+
+    <div class="result" id="loanResult"></div>
+  </div>
+
+
+  <!-- Savings Calculator -->
+  <div class="tool">
+    <h2>Savings Calculator</h2>
+
+    <input type="number" id="monthlySaving" placeholder="Monthly saving (₦)">
+    <input type="number" id="savingMonths" placeholder="Number of months">
+
+    <button onclick="savingsCalculator()">Calculate Savings</button>
+
+    <div class="result" id="savingsResult"></div>
+  </div>
+
+</main>
+
+
+<footer>
+  © 2026 Quick Money Tools
+</footer>
+
+
+<script>
+
+function money(number) {
+  return "₦" + Number(number).toLocaleString("en-NG", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+}
+
+
+function percentageCalculator() {
+  const percent = Number(document.getElementById("percent").value);
+  const amount = Number(document.getElementById("percentAmount").value);
+
+  if (!percent || !amount) {
+    document.getElementById("percentageResult").textContent =
+      "Please enter both values.";
+    return;
+  }
+
+  const result = (percent / 100) * amount;
+
+  document.getElementById("percentageResult").textContent =
+    "Result: " + money(result);
+}
+
+
+function discountCalculator() {
+  const price = Number(document.getElementById("originalPrice").value);
+  const discount = Number(document.getElementById("discountPercent").value);
+
+  if (!price || discount < 0) {
+    document.getElementById("discountResult").textContent =
+      "Please enter valid values.";
+    return;
+  }
+
+  const saved = (discount / 100) * price;
+  const finalPrice = price - saved;
+
+  document.getElementById("discountResult").innerHTML =
+    "You save: " + money(saved) +
+    "<br>Final price: " + money(finalPrice);
+}
+
+
+function profitCalculator() {
+  const buying = Number(document.getElementById("buyingPrice").value);
+  const selling = Number(document.getElementById("sellingPrice").value);
+
+  if (!buying || !selling) {
+    document.getElementById("profitResult").textContent =
+      "Please enter both prices.";
+    return;
+  }
+
+  const profit = selling - buying;
+  const percentage = (profit / buying) * 100;
+
+  document.getElementById("profitResult").innerHTML =
+    "Profit: " + money(profit) +
+    "<br>Profit margin on cost: " + percentage.toFixed(2) + "%";
+}
+
+
+function markupCalculator() {
+  const cost = Number(document.getElementById("costPrice").value);
+  const markup = Number(document.getElementById("markupPercent").value);
+
+  if (!cost || markup < 0) {
+    document.getElementById("markupResult").textContent =
+      "Please enter valid values.";
+    return;
+  }
+
+  const increase = (markup / 100) * cost;
+  const sellingPrice = cost + increase;
+
+  document.getElementById("markupResult").innerHTML =
+    "Markup: " + money(increase) +
+    "<br>Selling price: " + money(sellingPrice);
+}
+
+
+function vatCalculator() {
+  const amount = Number(document.getElementById("vatAmount").value);
+  const rate = Number(document.getElementById("vatRate").value);
+
+  if (!amount || rate < 0) {
+    document.getElementById("vatResult").textContent =
+      "Please enter valid values.";
+    return;
+  }
+
+  const vat = (rate / 100) * amount;
+  const total = amount + vat;
+
+  document.getElementById("vatResult").innerHTML =
+    "VAT: " + money(vat) +
+    "<br>Total including VAT: " + money(total);
+}
+
+
+function loanCalculator() {
+  const principal = Number(document.getElementById("loanAmount").value);
+  const annualRate = Number(document.getElementById("loanRate").value);
+  const months = Number(document.getElementById("loanMonths").value);
+
+  if (!principal || !months || annualRate < 0) {
+    document.getElementById("loanResult").textContent =
+      "Please enter valid values.";
+    return;
+  }
+
+  const monthlyRate = annualRate / 100 / 12;
+
+  let payment;
+
+  if (monthlyRate === 0) {
+    payment = principal / months;
+  } else {
+    payment =
+      principal *
+      monthlyRate *
+      Math.pow(1 + monthlyRate, months) /
+      (Math.pow(1 + monthlyRate, months) - 1);
+  }
+
+  const total = payment * months;
+  const interest = total - principal;
+
+  document.getElementById("loanResult").innerHTML =
+    "Estimated monthly payment: " + money(payment) +
+    "<br>Total repayment: " + money(total) +
+    "<br>Total interest: " + money(interest);
+}
+
+
+function savingsCalculator() {
+  const monthly = Number(document.getElementById("monthlySaving").value);
+  const months = Number(document.getElementById("savingMonths").value);
+
+  if (!monthly || !months) {
+    document.getElementById("savingsResult").textContent =
+      "Please enter both values.";
+    return;
+  }
+
+  const total = monthly * months;
+
+  document.getElementById("savingsResult").textContent =
+    "Total savings: " + money(total);
+}
+
+</script>
 
 </body>
 </html>
