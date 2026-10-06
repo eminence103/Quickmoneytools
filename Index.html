@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Money Tools</title>
+  <meta name="description" content="Free simple calculators for money, percentages, discounts and everyday calculations.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
+    }
+
+    header p {
+      margin: 0;
+      color: #ccc;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 18px;
+    }
+
+    .tool {
+      background: white;
+      padding: 25px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .tool h2 {
+      margin-top: 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #333;
+    }
+
+    .result {
+      margin-top: 15px;
+      padding: 14px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Quick Money Tools</h1>
+    <p>Simple free calculators for everyday money calculations.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="tool">
+      <h2>Percentage Calculator</h2>
+
+      <input type="number" id="percentage" placeholder="Enter percentage">
+
+      <input type="number" id="amount" placeholder="Enter amount">
+
+      <button onclick="calculatePercentage()">Calculate</button>
+
+      <div class="result" id="percentageResult">
+        Your answer will appear here.
+      </div>
+    </div>
+
+    <div class="tool">
+      <h2>Discount Calculator</h2>
+
+      <input type="number" id="price" placeholder="Original price">
+
+      <input type="number" id="discount" placeholder="Discount percentage">
+
+      <button onclick="calculateDiscount()">Calculate</button>
+
+      <div class="result" id="discountResult">
+        Your answer will appear here.
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2026 Quick Money Tools
+  </footer>
+
+  <script>
+    function calculatePercentage() {
+      const percentage = Number(document.getElementById("percentage").value);
+      const amount = Number(document.getElementById("amount").value);
+
+      if (!percentage || !amount) {
+        document.getElementById("percentageResult").innerText =
+          "Please enter both numbers.";
+        return;
+      }
+
+      const result = (percentage / 100) * amount;
+
+      document.getElementById("percentageResult").innerText =
+        percentage + "% of " + amount.toLocaleString() +
+        " = " + result.toLocaleString();
+    }
+
+    function calculateDiscount() {
+      const price = Number(document.getElementById("price").value);
+      const discount = Number(document.getElementById("discount").value);
+
+      if (!price || !discount) {
+        document.getElementById("discountResult").innerText =
+          "Please enter both numbers.";
+        return;
+      }
+
+      const savings = (discount / 100) * price;
+      const finalPrice = price - savings;
+
+      document.getElementById("discountResult").innerText =
+        "You save " + savings.toLocaleString() +
+        ". Final price: " + finalPrice.toLocaleString();
+    }
+  </script>
+
+</body>
+</html>
